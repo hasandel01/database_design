@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .product-info {
+            margin-bottom: 20px;
+        }
+        .reviews {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reviews for {{ product.name }}</h1>
+    <div class="product-info">
+        <p><strong>Price:</strong> ${{ product.price }}</p>
+        <p><strong>Description:</strong> {{ product.description }}</p>
+        <p><strong>Average Rating:</strong> {{ product.average_rating }}</p>
+    </div>
+    <table class="reviews">
+        <thead>
+            <tr>
+                <th>Rating</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+                <tr>
+                    <td>{{ review.rating }}</td>
+                    <td>{{ review.comment }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

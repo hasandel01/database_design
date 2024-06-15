@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 6px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .review-link {
+            display: inline-block;
+            margin-left: 5px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .review-link:hover {
+            text-decoration: underline;
+        }
+        .review-form {
+            margin-top: 20px;
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Products</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Average Rating</th>
+                <th>Reviews</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.product_id }}</td>
+                <td>{{ product.name }}</td>
+                <td>${{ product.price }}</td>
+                <td>{{ product.description|truncatewords:15 }}</td>
+                <td>{{ product.average_rating }}</td>
+                <td>
+                    <a href="{% url 'add_review' product.product_id %}" class="review-link">Add Review</a>
+                    <a href="{% url 'product_reviews' product.product_id %}" class="review-link">View Reviews</a>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Review Form -->
+    <div class="review-form">
+        <!-- This section is for the form that will be shown when adding a review -->
+    </div>
+</body>
+</html>
